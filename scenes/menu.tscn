@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://j72ee3efp2kd"]
+[gd_scene load_steps=47 format=3 uid="uid://j72ee3efp2kd"]
 
 [ext_resource type="Script" uid="uid://b14yif58nvmyk" path="res://scripts/menu.gd" id="1_kxmvd"]
 [ext_resource type="Texture2D" uid="uid://c1kmlgn2mxdr8" path="res://scenes/menus/resources/background_texture.tres" id="3_con2f"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://b3l34twaayh4v" path="res://assets/Trap Menu/Exit Option0002.png" id="37_qfcyc"]
 [ext_resource type="Texture2D" uid="uid://c3wvh855ogu8a" path="res://assets/Trap Menu/Exit Option0003.png" id="38_spe5f"]
 [ext_resource type="Texture2D" uid="uid://8q6hqqvd8vgb" path="res://assets/Trap Menu/Exit Option0004.png" id="39_jcbs5"]
+[ext_resource type="AudioStream" uid="uid://v2fkyh7iftah" path="res://assets/audio/music/MenuV4100_.ogg" id="40_qfcyc"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_7jp70"]
 frames = 4
@@ -247,3 +248,8 @@ texture_hover = SubResource("AnimatedTexture_jamij")
 texture_focused = SubResource("AnimatedTexture_jamij")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_qfcyc")
+volume_db = -10.0
+autoplay = true
