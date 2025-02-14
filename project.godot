@@ -25,7 +25,6 @@ OptionsManager="*res://scripts/options_manager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
 window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=0
 

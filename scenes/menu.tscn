@@ -1,7 +1,134 @@
-[gd_scene load_steps=3 format=3 uid="uid://j72ee3efp2kd"]
+[gd_scene load_steps=46 format=3 uid="uid://j72ee3efp2kd"]
 
 [ext_resource type="Script" uid="uid://b14yif58nvmyk" path="res://scripts/menu.gd" id="1_kxmvd"]
-[ext_resource type="PackedScene" uid="uid://c8j2u4q3xk1mv" path="res://scenes/options_ui.tscn" id="2_options"]
+[ext_resource type="Texture2D" uid="uid://c1kmlgn2mxdr8" path="res://scenes/menus/resources/background_texture.tres" id="3_con2f"]
+[ext_resource type="Texture2D" uid="uid://1p8xm81od3nf" path="res://assets/Trap Menu/Trap Island logo 2025.png" id="4_i6lef"]
+[ext_resource type="Texture2D" uid="uid://ucbf7mp1xu2f" path="res://assets/Trap Menu/Campaing button0001.png" id="5_70i5f"]
+[ext_resource type="Texture2D" uid="uid://dff1leabyyr0j" path="res://assets/Trap Menu/Campaing button0002.png" id="6_mj5lg"]
+[ext_resource type="Texture2D" uid="uid://c84sv7sk4ww0a" path="res://assets/Trap Menu/Campaing button0003.png" id="7_ufwb2"]
+[ext_resource type="Texture2D" uid="uid://cuewav0pwsvuk" path="res://assets/Trap Menu/Campaing button0004.png" id="8_6cdou"]
+[ext_resource type="Texture2D" uid="uid://bt1bavbg6k437" path="res://assets/Trap Menu/Options Button0001.png" id="9_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://bq40wd1ktj3qb" path="res://assets/Trap Menu/Exit Option0001.png" id="9_i42df"]
+[ext_resource type="Texture2D" uid="uid://d1ar3eoxqoucj" path="res://assets/Trap Menu/Options Button0002.png" id="10_3dmrc"]
+[ext_resource type="Texture2D" uid="uid://bj18c6l7q7ga0" path="res://assets/Trap Menu/Options Button0003.png" id="11_81l6r"]
+[ext_resource type="Texture2D" uid="uid://bmn7fkmylm1l2" path="res://assets/Trap Menu/Options Button0004.png" id="12_rsfmq"]
+[ext_resource type="Texture2D" uid="uid://bl0iytrceca0w" path="res://assets/Trap Menu/Options Button0005.png" id="13_oi1it"]
+[ext_resource type="Texture2D" uid="uid://f3xhnijsgcee" path="res://assets/Trap Menu/Options Button0006.png" id="14_fy8yy"]
+[ext_resource type="Texture2D" uid="uid://bn23yq1efnopp" path="res://assets/Trap Menu/Options Button0007.png" id="15_6wigr"]
+[ext_resource type="Texture2D" uid="uid://bgchvu6jn27lc" path="res://assets/Trap Menu/Options Button0008.png" id="16_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://4agdfimk2d1q" path="res://assets/Trap Menu/Extras Option0001.png" id="17_oi1it"]
+[ext_resource type="Texture2D" uid="uid://iy123545by2n" path="res://assets/Trap Menu/Extras Option0002.png" id="18_fy8yy"]
+[ext_resource type="Texture2D" uid="uid://dg5pkmgf02e3u" path="res://assets/Trap Menu/Extras Option0003.png" id="19_6wigr"]
+[ext_resource type="Texture2D" uid="uid://c8an8embpydfh" path="res://assets/Trap Menu/Extras Option0004.png" id="20_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://d23hpde4dw76j" path="res://assets/Trap Menu/Achiviments option0001.png" id="21_v8lyk"]
+[ext_resource type="Texture2D" uid="uid://dyxc4w8hkb3ct" path="res://assets/Trap Menu/Achiviments option0002.png" id="22_ruys5"]
+[ext_resource type="Texture2D" uid="uid://vx0oxhchr7rm" path="res://assets/Trap Menu/Achiviments option0003.png" id="23_jlmas"]
+[ext_resource type="Texture2D" uid="uid://cksqv70xueamb" path="res://assets/Trap Menu/Achiviments option0004.png" id="24_qfcyc"]
+[ext_resource type="Texture2D" uid="uid://d2u470tvdsfij" path="res://assets/Trap Menu/Achiviments option0005.png" id="25_spe5f"]
+[ext_resource type="Texture2D" uid="uid://cc2p7t835eaf" path="res://assets/Trap Menu/Achiviments option0006.png" id="26_jcbs5"]
+[ext_resource type="Texture2D" uid="uid://i3457ghqbcdx" path="res://assets/Trap Menu/Achiviments option0007.png" id="27_jamij"]
+[ext_resource type="Texture2D" uid="uid://cmuthagrin687" path="res://assets/Trap Menu/Achiviments option0008.png" id="28_nsg6j"]
+[ext_resource type="Texture2D" uid="uid://dn1f4ikmbkrvm" path="res://assets/Trap Menu/Credits Option0001.png" id="29_qwtqu"]
+[ext_resource type="Texture2D" uid="uid://o10yrphnrm5t" path="res://assets/Trap Menu/Credits Option0002.png" id="30_dg0of"]
+[ext_resource type="Texture2D" uid="uid://lq8qyhvjtwl2" path="res://assets/Trap Menu/Credits Option0003.png" id="31_21umf"]
+[ext_resource type="Texture2D" uid="uid://dbcjsoxqn21d5" path="res://assets/Trap Menu/Credits Option0004.png" id="32_bugl6"]
+[ext_resource type="Texture2D" uid="uid://cra7qsgvs04ul" path="res://assets/Trap Menu/Credits Option0005.png" id="33_leckd"]
+[ext_resource type="Texture2D" uid="uid://lp6m15bxub7j" path="res://assets/Trap Menu/Credits Option0006.png" id="34_tg78l"]
+[ext_resource type="Texture2D" uid="uid://b0u0jiwq3jxsy" path="res://assets/Trap Menu/Credits Option0007.png" id="35_055ta"]
+[ext_resource type="Texture2D" uid="uid://ctjxgq1xhsybd" path="res://assets/Trap Menu/Credits Option0008.png" id="36_6jp1x"]
+[ext_resource type="Texture2D" uid="uid://b3l34twaayh4v" path="res://assets/Trap Menu/Exit Option0002.png" id="37_qfcyc"]
+[ext_resource type="Texture2D" uid="uid://c3wvh855ogu8a" path="res://assets/Trap Menu/Exit Option0003.png" id="38_spe5f"]
+[ext_resource type="Texture2D" uid="uid://8q6hqqvd8vgb" path="res://assets/Trap Menu/Exit Option0004.png" id="39_jcbs5"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_7jp70"]
+frames = 4
+speed_scale = 20.0
+frame_0/texture = ExtResource("5_70i5f")
+frame_1/texture = ExtResource("6_mj5lg")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("7_ufwb2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("8_6cdou")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ffqrc"]
+frames = 8
+speed_scale = 20.0
+frame_0/texture = ExtResource("9_g6gyw")
+frame_1/texture = ExtResource("10_3dmrc")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_81l6r")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("12_rsfmq")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("13_oi1it")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("14_fy8yy")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("15_6wigr")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("16_lnf0i")
+frame_7/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_x16fv"]
+frames = 4
+speed_scale = 20.0
+frame_0/texture = ExtResource("17_oi1it")
+frame_1/texture = ExtResource("18_fy8yy")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("19_6wigr")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("20_lnf0i")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_dslam"]
+frames = 8
+speed_scale = 20.0
+frame_0/texture = ExtResource("21_v8lyk")
+frame_1/texture = ExtResource("22_ruys5")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("23_jlmas")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("24_qfcyc")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("25_spe5f")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("26_jcbs5")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("27_jamij")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("28_nsg6j")
+frame_7/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_moj2y"]
+frames = 8
+speed_scale = 20.0
+frame_0/texture = ExtResource("29_qwtqu")
+frame_1/texture = ExtResource("30_dg0of")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("31_21umf")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("32_bugl6")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("33_leckd")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("34_tg78l")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("35_055ta")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("36_6jp1x")
+frame_7/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_jamij"]
+frames = 4
+speed_scale = 20.0
+frame_0/texture = ExtResource("9_i42df")
+frame_1/texture = ExtResource("37_qfcyc")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("38_spe5f")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("39_jcbs5")
+frame_3/duration = 1.0
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,48 +139,111 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kxmvd")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_con2f")
+expand_mode = 3
+stretch_mode = 6
 
-[node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+[node name="Logo" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -291.0
+offset_top = 33.0
+offset_right = -29.0
+offset_bottom = 241.0
+grow_horizontal = 0
+texture = ExtResource("4_i6lef")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = 38.0
+offset_right = 918.0
+offset_bottom = -38.0
+grow_vertical = 2
+alignment = 1
+
+[node name="Campagin" type="TextureButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_vertical = 3
+texture_normal = ExtResource("5_70i5f")
+texture_pressed = ExtResource("5_70i5f")
+texture_hover = SubResource("AnimatedTexture_7jp70")
+texture_focused = SubResource("AnimatedTexture_7jp70")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="Title" type="Label" parent="CenterContainer/MainButtons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Trap Island"
-horizontal_alignment = 1
-
-[node name="PlayButton" type="Button" parent="CenterContainer/MainButtons"]
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Play"
-
-[node name="OptionsButton" type="Button" parent="CenterContainer/MainButtons"]
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Options"
-
-[node name="ExitButton" type="Button" parent="CenterContainer/MainButtons"]
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Exit"
-
-[node name="OptionsUI" parent="CenterContainer" instance=ExtResource("2_options")]
+[node name="Options" type="TextureButton" parent="VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("9_g6gyw")
+texture_pressed = ExtResource("9_g6gyw")
+texture_hover = SubResource("AnimatedTexture_ffqrc")
+texture_focused = SubResource("AnimatedTexture_ffqrc")
+ignore_texture_size = true
+stretch_mode = 5
 
-[connection signal="pressed" from="CenterContainer/MainButtons/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CenterContainer/MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="Extras" type="TextureButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("17_oi1it")
+texture_pressed = ExtResource("17_oi1it")
+texture_hover = SubResource("AnimatedTexture_x16fv")
+texture_focused = SubResource("AnimatedTexture_x16fv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Achievement" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("21_v8lyk")
+texture_pressed = ExtResource("21_v8lyk")
+texture_hover = SubResource("AnimatedTexture_dslam")
+texture_focused = SubResource("AnimatedTexture_dslam")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Credits" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("29_qwtqu")
+texture_pressed = ExtResource("29_qwtqu")
+texture_hover = SubResource("AnimatedTexture_moj2y")
+texture_focused = SubResource("AnimatedTexture_moj2y")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("9_i42df")
+texture_pressed = ExtResource("9_i42df")
+texture_hover = SubResource("AnimatedTexture_jamij")
+texture_focused = SubResource("AnimatedTexture_jamij")
+ignore_texture_size = true
+stretch_mode = 5

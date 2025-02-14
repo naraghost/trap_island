@@ -2,3 +2,41 @@ root = true
 
 [*]
 charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = tab
+insert_final_newline = true
+max_line_length = 200
+trim_trailing_whitespace = true
+
+[*.{json}]
+indent_size = 2
+indent_style = space
+
+[*.js]
+block_comment = *
+block_comment_end = */
+block_comment_start = /*
+indent_size = 2
+indent_style = space
+
+[*.yml]
+indent_style = tab
+
+[package.json]
+indent_style = tab
+
+[lib/core.json]
+indent_style = tab
+
+[CHANGELOG.md]
+indent_style = space
+
+[{*.json,Makefile}]
+max_line_length = off
+
+[test/{dotdot,resolver,module_dir,multirepo,node_path,pathfilter,precedence}/**/*]
+indent_size = off
+indent_style = off
+insert_final_newline = off
+max_line_length = off

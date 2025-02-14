@@ -1,0 +1,29 @@
+[gd_resource type="AnimatedTexture" load_steps=9 format=3 uid="uid://c1kmlgn2mxdr8"]
+
+[ext_resource type="Texture2D" uid="uid://bfstsy5q1d86a" path="res://assets/Trap Menu/Background_Fixed_00.png" id="1_rvphc"]
+[ext_resource type="Texture2D" uid="uid://cu6gpms8wf7cs" path="res://assets/Trap Menu/Background_Fixed_01.png" id="2_j3y2g"]
+[ext_resource type="Texture2D" uid="uid://bwovoqbb18rrm" path="res://assets/Trap Menu/Background_Fixed_02.png" id="3_7qnsj"]
+[ext_resource type="Texture2D" uid="uid://clmbvmyjx56em" path="res://assets/Trap Menu/Background_Fixed_03.png" id="4_5fgwp"]
+[ext_resource type="Texture2D" uid="uid://dynb2q3erue8v" path="res://assets/Trap Menu/Background_Fixed_04.png" id="5_yga0k"]
+[ext_resource type="Texture2D" uid="uid://dxsonsv30c4h3" path="res://assets/Trap Menu/Background_Fixed_05.png" id="6_1ii36"]
+[ext_resource type="Texture2D" uid="uid://np3pldwc5mmp" path="res://assets/Trap Menu/Background_Fixed_06.png" id="7_fmxbq"]
+[ext_resource type="Texture2D" uid="uid://cgmlus4r762hc" path="res://assets/Trap Menu/Background_Fixed_07.png" id="8_bh0uj"]
+
+[resource]
+frames = 8
+speed_scale = 20.0
+frame_0/texture = ExtResource("1_rvphc")
+frame_1/texture = ExtResource("2_j3y2g")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_7qnsj")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_5fgwp")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("5_yga0k")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("6_1ii36")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("7_fmxbq")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("8_bh0uj")
+frame_7/duration = 1.0
