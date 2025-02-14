@@ -1,0 +1,31 @@
+[gd_scene load_steps=0 format=3 uid="uid://c8j2u4q3xk1mv"]
+
+[node name="OptionsUI" type="VBoxContainer"]
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+
+[node name="ShakeContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShakeContainer"]
+layout_mode = 2
+text = "Screen Shake Intensity"
+horizontal_alignment = 1
+
+[node name="ShakeSlider" type="HSlider" parent="ShakeContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back" 

@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://j72ee3efp2kd"]
+
+[ext_resource type="Script" uid="uid://b14yif58nvmyk" path="res://scripts/menu.gd" id="1_kxmvd"]
+[ext_resource type="PackedScene" uid="uid://c8j2u4q3xk1mv" path="res://scenes/options_ui.tscn" id="2_options"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxmvd")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Trap Island"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/MainButtons"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="OptionsUI" parent="CenterContainer" instance=ExtResource("2_options")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/MainButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]

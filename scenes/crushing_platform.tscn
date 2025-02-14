@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dptkvs44nquwr"]
+
+[ext_resource type="Script" uid="uid://wnxvyb6xd5c" path="res://scripts/crushing_platform.gd" id="1_avcpb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avcpb"]
+albedo_color = Color(0.858824, 0.141176, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_avcpb"]
+material = SubResource("StandardMaterial3D_avcpb")
+size = Vector3(1, 0.25, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8bh0"]
+size = Vector3(1, 0.001, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5oo1t"]
+albedo_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ww2c1"]
+material = SubResource("StandardMaterial3D_5oo1t")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.5
+
+[node name="CrushingPlatform" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_avcpb")
+script = ExtResource("1_avcpb")
+max_distance = 1.0
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1245, 0)
+shape = SubResource("BoxShape3D_y8bh0")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.35, 0)
+mesh = SubResource("CylinderMesh_ww2c1")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.35, 0)
+mesh = SubResource("CylinderMesh_ww2c1")
+skeleton = NodePath("")

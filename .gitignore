@@ -1,0 +1,23 @@
+# Godot-specific ignores
+# Godot 4 specifics together
+.godot/
+
+# Binaries
+bin/
+lib/
+
+# Build Path
+build/
+*build
+Build/
+*Build
+dist/
+*dist/
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*
+
+# macOS Clean
+.DS_Store

@@ -1,0 +1,602 @@
+[gd_scene load_steps=30 format=3 uid="uid://b1a8o455klce5"]
+
+[ext_resource type="PackedScene" uid="uid://cmy4ekxyuktwn" path="res://scenes/player.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://b38gbd6tjfrm8" path="res://scenes/cube.tscn" id="3_dwbse"]
+[ext_resource type="Script" uid="uid://b88htgw7axd4v" path="res://scripts/iso_camera.gd" id="4_aqk2v"]
+[ext_resource type="Material" uid="uid://efsyqkcmtdco" path="res://assets/rock_ground.tres" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://dptkvs44nquwr" path="res://scenes/crushing_platform.tscn" id="5_qfnet"]
+[ext_resource type="Texture2D" uid="uid://bup4s62rxpfpb" path="res://assets/rock_topface.png" id="6_qfnet"]
+[ext_resource type="Script" uid="uid://cree1gxnxiqos" path="res://scripts/lava_ground.gd" id="7_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://dv0n8kw43vd21" path="res://scenes/falling_platform.tscn" id="7_i7141"]
+[ext_resource type="PackedScene" uid="uid://d0rat0c8n0ry6" path="res://scenes/pause_menu.tscn" id="8_4mrxx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_036b0"]
+sky_top_color = Color(0.197577, 0.356717, 1, 1)
+sky_horizon_color = Color(0.380628, 0.700304, 0.848135, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.430227, 0.694132, 0.827211, 1)
+
+[sub_resource type="Sky" id="Sky_dwbse"]
+sky_material = SubResource("ProceduralSkyMaterial_036b0")
+
+[sub_resource type="Environment" id="Environment_036b0"]
+sky = SubResource("Sky_dwbse")
+sdfgi_use_occlusion = true
+glow_intensity = 1.19
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfnet"]
+render_priority = 1
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7141"]
+render_priority = 1
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mrxx"]
+albedo_color = Color(2, 0, 0, 1)
+albedo_texture = ExtResource("6_qfnet")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7r4gi"]
+size = Vector3(0.5, 0.1, 0.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_71j4m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qfnet"]
+size = Vector3(0.001, 1.75, 21.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7141"]
+size = Vector3(1, 1.75, 0.001)
+
+[sub_resource type="Animation" id="Animation_i7141"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.25, -9)]
+}
+
+[sub_resource type="Animation" id="Animation_qfnet"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0.25, -9), Vector3(1, 0.25, -11)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7r4gi"]
+_data = {
+&"RESET": SubResource("Animation_i7141"),
+&"move": SubResource("Animation_qfnet")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r4gi"]
+albedo_texture = ExtResource("6_qfnet")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4mrxx"]
+material = SubResource("StandardMaterial3D_7r4gi")
+size = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7kh3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qfnet"]
+material = SubResource("StandardMaterial3D_w7kh3")
+size = Vector2(1, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3hyu"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_i7141"]
+material = SubResource("StandardMaterial3D_e3hyu")
+size = Vector2(0.5, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4mrxx"]
+size = Vector3(1, 0.25, 0.5)
+
+[node name="World" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 2, 2, 2)
+projection = 1
+current = true
+script = ExtResource("4_aqk2v")
+target_path = NodePath("../Player")
+initial_zoom = 2.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_036b0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984808, -0.099601, 0.142245, 2.20068e-08, 0.819152, 0.573577, -0.173649, -0.564863, 0.806707, 0, 2, 3.25)
+
+[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 0)
+
+[node name="Ground" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
+
+[node name="Wall" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -9.25)
+cube_size = Vector3(0.5, 2, 20)
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube2" parent="Ground" instance=ExtResource("3_dwbse")]
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube3" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube5" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube6" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube8" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube9" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube11" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube12" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="CrushingPlatform" parent="Ground" instance=ExtResource("5_qfnet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -1.5)
+fall_speed = 4.0
+rise_speed = 1.5
+max_distance = 0.85
+
+[node name="CrushingPlatform2" parent="Ground" instance=ExtResource("5_qfnet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -4)
+rise_speed = 1.5
+max_distance = 0.85
+
+[node name="CrushingPlatform3" parent="Ground" instance=ExtResource("5_qfnet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -6.5)
+fall_speed = 3.5
+max_distance = 0.85
+
+[node name="CrushingPlatform4" parent="Ground" instance=ExtResource("5_qfnet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -7)
+fall_speed = 3.5
+rise_speed = 0.75
+max_distance = 0.85
+anticipation_time = 0.7
+
+[node name="CrushingPlatform5" parent="Ground" instance=ExtResource("5_qfnet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -7.5)
+fall_speed = 3.5
+rise_speed = 0.5
+max_distance = 0.85
+
+[node name="Cube14" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube15" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -2)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="LavaGround" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -2.5)
+custom_top_material = SubResource("StandardMaterial3D_4mrxx")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Area3D" type="Area3D" parent="Ground/LavaGround"]
+collision_layer = 4
+script = ExtResource("7_7r4gi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_7r4gi")
+debug_color = Color(0.933333, 0, 1, 1)
+
+[node name="LavaGround2" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.1, -2.5)
+custom_top_material = SubResource("StandardMaterial3D_4mrxx")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Area3D" type="Area3D" parent="Ground/LavaGround2"]
+collision_layer = 4
+script = ExtResource("7_7r4gi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_7r4gi")
+debug_color = Color(0.933333, 0, 1, 1)
+
+[node name="LavaGround3" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -5)
+custom_top_material = SubResource("StandardMaterial3D_4mrxx")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Area3D" type="Area3D" parent="Ground/LavaGround3"]
+collision_layer = 4
+script = ExtResource("7_7r4gi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_7r4gi")
+debug_color = Color(0.933333, 0, 1, 1)
+
+[node name="LavaGround4" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.1, -5)
+custom_top_material = SubResource("StandardMaterial3D_4mrxx")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Area3D" type="Area3D" parent="Ground/LavaGround4"]
+collision_layer = 4
+script = ExtResource("7_7r4gi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_7r4gi")
+debug_color = Color(0.933333, 0, 1, 1)
+
+[node name="Cube20" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube21" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -3)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube23" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube24" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -3.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube26" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube27" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube29" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube30" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube32" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube33" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -5.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube35" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube36" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -6)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube41" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube42" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -6.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube44" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube45" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -7)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube47" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube48" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -7.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube43" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -6.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube46" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube49" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -7)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube50" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube51" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -7.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube52" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube53" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -8)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube54" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube55" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -8.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube56" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube57" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -11.5)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube58" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00221205, 0, -15.9949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube59" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502212, 0, -15.9949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube60" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00221205, 0, -16.4949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube61" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502212, 0, -16.4949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube62" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00221205, 0, -16.9949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube63" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502212, 0, -16.9949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube64" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00221205, 0, -17.4949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="Cube65" parent="Ground" instance=ExtResource("3_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502212, 0, -17.4949)
+custom_top_material = ExtResource("4_k0juu")
+custom_front_material = SubResource("StandardMaterial3D_qfnet")
+custom_right_material = SubResource("StandardMaterial3D_i7141")
+
+[node name="FallingPlatform" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="FallingPlatform2" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -12)
+
+[node name="FallingPlatform3" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5)
+
+[node name="FallingPlatform4" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -12.5)
+
+[node name="FallingPlatform5" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+
+[node name="FallingPlatform6" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -13)
+
+[node name="FallingPlatform7" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.5)
+
+[node name="FallingPlatform8" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -13.5)
+
+[node name="FallingPlatform9" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+
+[node name="FallingPlatform10" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -14)
+
+[node name="FallingPlatform11" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.5)
+
+[node name="FallingPlatform12" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -14.5)
+
+[node name="FallingPlatform13" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="FallingPlatform14" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -15)
+
+[node name="FallingPlatform15" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.5)
+
+[node name="FallingPlatform16" parent="Ground" instance=ExtResource("7_i7141")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -15.5)
+
+[node name="WorldBoundries" type="StaticBody3D" parent="."]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_71j4m")
+
+[node name="XAxis" type="CollisionShape3D" parent="WorldBoundries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4995, 1.375, -10.6255)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="ZAxis" type="CollisionShape3D" parent="WorldBoundries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9995, 1.375, 0.2495)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7r4gi")
+}
+autoplay = "move"
+
+[node name="MovingPlatform" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.25, -9)
+collision_layer = 2
+sync_to_physics = false
+
+[node name="TopFace" type="MeshInstance3D" parent="MovingPlatform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.125, 0)
+mesh = SubResource("QuadMesh_4mrxx")
+
+[node name="LeftFace" type="MeshInstance3D" parent="MovingPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+mesh = SubResource("QuadMesh_qfnet")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="RightFace" type="MeshInstance3D" parent="MovingPlatform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, 0)
+mesh = SubResource("QuadMesh_i7141")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPlatform"]
+shape = SubResource("BoxShape3D_4mrxx")
+debug_color = Color(0.819608, 0.231373, 0.690196, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_4mrxx")]
