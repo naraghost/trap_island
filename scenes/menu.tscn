@@ -131,7 +131,7 @@ frame_2/duration = 1.0
 frame_3/texture = ExtResource("39_jcbs5")
 frame_3/duration = 1.0
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" node_paths=PackedStringArray("button_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,6 +139,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kxmvd")
+button_container = NodePath("VBoxContainer")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -1
@@ -178,7 +179,7 @@ offset_bottom = -38.0
 grow_vertical = 2
 alignment = 1
 
-[node name="Campagin" type="TextureButton" parent="VBoxContainer"]
+[node name="campaign" type="TextureButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
