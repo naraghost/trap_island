@@ -9,8 +9,6 @@ extends MeshInstance3D
 @export var shake_intensity: float = 0.2 # Screen shake intensity on impact
 @export var shake_duration: float = 0.2 # Screen shake duration on impact
 
-@onready var area3d: Area3D = $Area3D
-
 enum State {WAITING, ANTICIPATING, FALLING, IMPACT_PAUSE, RISING}
 var current_state: State = State.WAITING
 var initial_position: Vector3
@@ -21,7 +19,6 @@ var initial_scale: Vector3
 func _ready():
 	initial_position = global_position
 	initial_scale = scale
-	area3d.body_entered.connect(_on_body_entered)
 
 func _process(delta):
 	match current_state:
@@ -73,6 +70,5 @@ func handle_impact():
 	ScreenShake.trigger_shake(global_position, shake_intensity, shake_duration)
 
 func _on_body_entered(body: Node3D):
-	print("body: ", body)
 	if body is PlayerCharacter:
 		body.trigger_death()

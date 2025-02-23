@@ -43,3 +43,5 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.35, 0)
 mesh = SubResource("CylinderMesh_ww2c1")
 skeleton = NodePath("")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

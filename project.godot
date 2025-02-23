@@ -19,7 +19,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 ScreenShake="*res://globals/screen_shake.gd"
-OptionsManager="*res://scripts/options_manager.gd"
+OptionsManager="*res://globals/options_manager.gd"
 
 [display]
 
