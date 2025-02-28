@@ -1,7 +1,7 @@
 extends Node
 
 const MAX_SHAKE_DISTANCE = 10.0 # Adjust this value based on your game's scale
-const DEFAULT_SHAKE_INTENSITY = 0.1
+const DEFAULT_SHAKE_INTENSITY = 0.03
 const DEFAULT_SHAKE_DURATION = 0.1
 
 static var _instance: Node = null

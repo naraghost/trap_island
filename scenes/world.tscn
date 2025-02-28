@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cmy4ekxyuktwn" path="res://scenes/player.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://b38gbd6tjfrm8" path="res://scenes/cube.tscn" id="3_dwbse"]
-[ext_resource type="Script" uid="uid://b88htgw7axd4v" path="res://scripts/iso_camera.gd" id="4_aqk2v"]
+[ext_resource type="Script" path="res://scripts/iso_camera.gd" id="4_aqk2v"]
 [ext_resource type="Material" uid="uid://efsyqkcmtdco" path="res://assets/rock_ground.tres" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://dptkvs44nquwr" path="res://scenes/crushing_platform.tscn" id="5_qfnet"]
 [ext_resource type="Texture2D" uid="uid://bup4s62rxpfpb" path="res://assets/rock_topface.png" id="6_qfnet"]
-[ext_resource type="Script" uid="uid://cree1gxnxiqos" path="res://scripts/lava_ground.gd" id="7_7r4gi"]
+[ext_resource type="Script" path="res://scripts/lava_ground.gd" id="7_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://dv0n8kw43vd21" path="res://scenes/falling_platform.tscn" id="7_i7141"]
 [ext_resource type="PackedScene" uid="uid://d0rat0c8n0ry6" path="res://scenes/pause_menu.tscn" id="8_4mrxx"]
 
@@ -84,8 +84,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7r4gi"]
 _data = {
-&"RESET": SubResource("Animation_i7141"),
-&"move": SubResource("Animation_qfnet")
+"RESET": SubResource("Animation_i7141"),
+"move": SubResource("Animation_qfnet")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r4gi"]
@@ -239,7 +239,6 @@ script = ExtResource("7_7r4gi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_7r4gi")
-debug_color = Color(0.933333, 0, 1, 1)
 
 [node name="LavaGround2" parent="Ground" instance=ExtResource("3_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.1, -2.5)
@@ -254,7 +253,6 @@ script = ExtResource("7_7r4gi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround2/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_7r4gi")
-debug_color = Color(0.933333, 0, 1, 1)
 
 [node name="LavaGround3" parent="Ground" instance=ExtResource("3_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -5)
@@ -269,7 +267,6 @@ script = ExtResource("7_7r4gi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround3/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_7r4gi")
-debug_color = Color(0.933333, 0, 1, 1)
 
 [node name="LavaGround4" parent="Ground" instance=ExtResource("3_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.1, -5)
@@ -284,7 +281,6 @@ script = ExtResource("7_7r4gi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround4/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_7r4gi")
-debug_color = Color(0.933333, 0, 1, 1)
 
 [node name="Cube20" parent="Ground" instance=ExtResource("3_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
@@ -570,7 +566,7 @@ shape = SubResource("BoxShape3D_i7141")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_7r4gi")
+"": SubResource("AnimationLibrary_7r4gi")
 }
 autoplay = "move"
 
@@ -595,7 +591,6 @@ skeleton = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPlatform"]
 shape = SubResource("BoxShape3D_4mrxx")
-debug_color = Color(0.819608, 0.231373, 0.690196, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

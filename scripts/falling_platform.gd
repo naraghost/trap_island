@@ -21,7 +21,7 @@ func fall():
 	
 	# Create fall tween
 	var fall_tween = create_tween()
-	fall_tween.tween_property(platform, "global_position", fall_pos, 1.0)
+	fall_tween.tween_property(platform, "global_position", fall_pos, 2.0)
 	fall_tween.tween_callback(queue_free)
 
 

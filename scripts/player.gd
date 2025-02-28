@@ -11,6 +11,7 @@ class_name PlayerCharacter
 @onready var ground_ray: RayCast3D = $ShadowRaycast
 @onready var debug_label: Label3D = $DebugLabel
 @onready var player_sprite: AnimatedSprite3D = $AnimatedSprite3D
+@onready var attack_timer:Timer = $attack_timer
 
 # Example custom animator. If you have your own, adjust as needed.
 @onready var animator: PlayerAnimator = PlayerAnimator.new(player_sprite)
@@ -26,6 +27,10 @@ var base_sprite_rotation_degrees = Vector3(-30, 45, 0)
 
 var is_walk_animation_active = false
 
+var is_walk:bool = false
+var is_jump:bool = false
+var is_attack:bool = false
+
 func _ready():
 	# Store the initial sprite scale, and force the rotation so it matches the isometric camera.
 	base_sprite_scale = Vector3.ONE  # Set a known initial scale
@@ -34,23 +39,24 @@ func _ready():
 	print("Initial scale set to: ", base_sprite_scale)  # Debug print
 
 func _physics_process(delta):
-	if is_dying:
-		return
-
-	update_shadow()
-
-	# If the player fell below a certain height, trigger death
-	if global_position.y < -5:
-		trigger_death()
-		return
-
 	# Gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
+	update_shadow()
 
+	# if player is in void
+	if global_position.y < -5:
+		trigger_death()
+		return
+	
 	# Jump
+	if is_on_floor():
+		is_jump = false
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		animator.animation = "jump"
+		is_jump = true
 
 	# Get input for movement
 	var input_dir = Vector2(
@@ -70,29 +76,43 @@ func _physics_process(delta):
 		var target_velocity = direction * SPEED
 		velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION * delta)
 		velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION * delta)
-
+		
+		is_walk = true
+		
 		# Start walk-squish if not active
 		if not is_walk_animation_active:
 			print("Starting walk animation")  # Debug print
 			apply_walk_squish()
+		
+		if !is_attack and !is_jump:
+			animator.animation = "walk"
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 		velocity.z = move_toward(velocity.z, 0, FRICTION * delta)
-
+		
+		is_walk = false
+		
 		# Stop walk-squish if the player stops
 		if is_walk_animation_active:
 			print("Stopping walk animation")  # Debug print
 			reset_walk_squish()
+		if !is_attack and !is_jump:
+			animator.animation = "idle"
 
 	move_and_slide()
 
 	# Update animated sprite if velocity is high enough
 	var velocity_2d = Vector2(velocity.x, velocity.z)
-	if velocity_2d.length() > 0.1:
+	if velocity_2d.length() > 0.1 and !is_attack:
 		animator.update_animation(velocity_2d, delta) # or whatever your animator expects
-	else:
+	elif !is_attack:
 		animator.set_idle()
 
+func _input(event):
+	if Input.is_action_just_pressed("attack") and !is_attack:
+		is_attack = true
+		player_sprite.play("attack")
+		attack_timer.start(attack_timer.wait_time)
 
 # -- Walking "Squish" Tween -
 
@@ -224,3 +244,7 @@ func update_shadow():
 			debug_label.text = "No Hit"
 			debug_label.modulate = Color.RED
 		shadow_sprite.visible = false
+
+
+func _on_attack_timeout():
+	is_attack = false
