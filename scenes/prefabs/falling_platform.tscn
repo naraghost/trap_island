@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv0n8kw43vd21"]
+
+[ext_resource type="Script" path="res://scripts/falling_platform.gd" id="1_kvkaw"]
+[ext_resource type="PackedScene" uid="uid://b38gbd6tjfrm8" path="res://presets/cube.tscn" id="2_t2at0"]
+[ext_resource type="Texture2D" uid="uid://d2ff2wdnhy0ux" path="res://assets/prototype_grid.png" id="3_1t3e3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8gcyd"]
+size = Vector3(0.5, 0.1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7euhe"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_color = Color(0.423529, 0.423529, 0.423529, 1)
+albedo_texture = ExtResource("3_1t3e3")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66fcr"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cejhq"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+
+[node name="FallingPlatform" type="Node3D"]
+script = ExtResource("1_kvkaw")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_8gcyd")
+
+[node name="Cube" parent="." instance=ExtResource("2_t2at0")]
+cube_size = Vector3(2, 1, 1)
+custom_top_material = SubResource("StandardMaterial3D_7euhe")
+custom_front_material = SubResource("StandardMaterial3D_66fcr")
+custom_right_material = SubResource("StandardMaterial3D_cejhq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

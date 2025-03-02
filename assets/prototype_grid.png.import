@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwo7quy8f72jt"
-path.s3tc="res://.godot/imported/idle 40004.png-e5c3dd1db9e4fc223c191fa155768735.s3tc.ctex"
+uid="uid://d2ff2wdnhy0ux"
+path.s3tc="res://.godot/imported/prototype_grid.png-65f86cb9e685723071752a02f8b0ac91.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/T/idle 40004.png"
-dest_files=["res://.godot/imported/idle 40004.png-e5c3dd1db9e4fc223c191fa155768735.s3tc.ctex"]
+source_file="res://assets/prototype_grid.png"
+dest_files=["res://.godot/imported/prototype_grid.png-65f86cb9e685723071752a02f8b0ac91.s3tc.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

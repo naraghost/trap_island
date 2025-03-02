@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyq5tatihyle4"]
+
+[ext_resource type="Script" path="res://scripts/prefabs/falling_platforms.gd" id="1_agdi1"]
+
+[node name="falling_platforms" type="Node3D"]
+script = ExtResource("1_agdi1")
+platforms_number = 3
