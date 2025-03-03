@@ -546,7 +546,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_mask = 6
+collision_mask = 14
 script = ExtResource("1_i3pqv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -559,11 +559,20 @@ target_position = Vector3(0, -5, 0)
 collision_mask = 2
 
 [node name="ShadowGradient" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.05, 0, 0.05)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.05, 0, 0.05)
 top_level = true
 modulate = Color(0.151276, 0.151276, 0.151276, 1)
-render_priority = 2
+double_sided = false
 texture = SubResource("GradientTexture2D_dqkch")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819151, 0.573576, -0.707107, -0.40558, 0.579228, 0, 0.165, 0)
+sorting_offset = 3.0
+pixel_size = 0.001
+double_sided = false
+sprite_frames = SubResource("SpriteFrames_y4r1p")
+animation = &"attack"
+autoplay = "idle_down"
 
 [node name="DebugLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.390609, 0)
@@ -573,16 +582,6 @@ render_priority = 2
 outline_render_priority = 1
 text = "Debug"
 font_size = 12
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819151, 0.573576, -0.707107, -0.40558, 0.579228, 0, 0.165, 0)
-sorting_offset = 3.0
-pixel_size = 0.001
-double_sided = false
-render_priority = 3
-sprite_frames = SubResource("SpriteFrames_y4r1p")
-animation = &"idle_down"
-autoplay = "idle_down"
 
 [node name="attack_timer" type="Timer" parent="."]
 process_callback = 0

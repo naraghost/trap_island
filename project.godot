@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 
 ScreenShake="*res://globals/screen_shake.gd"
 OptionsManager="*res://globals/options_manager.gd"
+Global="*res://globals/Global.gd"
 
 [display]
 
@@ -32,6 +33,7 @@ window/vsync/vsync_mode=0
 [global_group]
 
 player=""
+enemy=""
 
 [input]
 
@@ -81,6 +83,7 @@ attack={
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Scenario"
 3d_physics/layer_3="Traps"
+3d_physics/layer_4="enemies"
 
 [physics]
 

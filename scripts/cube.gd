@@ -62,18 +62,22 @@ func setup_render_layers():
 	for face in faces:
 		if face:
 			face.layers = 2 # Layer 2 for walls
+			face.sorting_use_aabb_center = false
 			if face.material_override:
 				# face.material_override.render_priority = 1
 				face.material_override.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
 
 func setup_face_material(mesh: MeshInstance3D, material: StandardMaterial3D):
 	if material and mesh:
-		var mat = material.duplicate()
+		var mat:StandardMaterial3D = material.duplicate()
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-		mat.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
+		#mat.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
 		# mat.no_depth_test = false
 		# mat.render_priority = 1
+		if mesh == right_mesh:
+			mat.cull_mode = BaseMaterial3D.CULL_FRONT
 		mesh.material_override = mat
+		
 
 func create_collision():
 	static_body = StaticBody3D.new()
@@ -93,9 +97,9 @@ func create_face_mesh() -> MeshInstance3D:
 	# Create and set up default material
 	var material = StandardMaterial3D.new()
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	material.cull_mode = BaseMaterial3D.CULL_BACK
 	material.albedo_color = Color(1, 1, 1, 1)
-	material.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
+	#material.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
 	# material.no_depth_test = false
 	material.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
 	# material.depth_test_enabled = true

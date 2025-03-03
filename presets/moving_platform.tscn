@@ -29,7 +29,7 @@ size = Vector2(0.5, 0.25)
 size = Vector3(1, 0.25, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lukyi"]
-size = Vector3(1, 0.0421875, 0.5)
+size = Vector3(1, 0.0480835, 0.5)
 
 [node name="MovingPlatform" type="Node3D"]
 script = ExtResource("1_pxgj3")
@@ -60,8 +60,12 @@ skeleton = NodePath("../CollisionShape3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="platform"]
 shape = SubResource("BoxShape3D_4mrxx")
 
-[node name="player_detector" type="Area3D" parent="."]
+[node name="player_detector" type="Area3D" parent="." groups=["player"]]
+collision_layer = 4
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_detector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130327, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141059, 0)
 shape = SubResource("BoxShape3D_lukyi")
+
+[connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_area_entered"]

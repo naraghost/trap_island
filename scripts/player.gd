@@ -6,6 +6,8 @@ class_name PlayerCharacter
 @export var JUMP_VELOCITY = 3
 @export var ACCELERATION = 200.0
 @export var FRICTION = 100.0
+@export var ATTACK_COUNTDOWN = 0.5
+var HEALTH:float = 100.0
 
 @onready var shadow_sprite: Sprite3D = $ShadowGradient
 @onready var ground_ray: RayCast3D = $ShadowRaycast
@@ -17,6 +19,8 @@ class_name PlayerCharacter
 @onready var animator: PlayerAnimator = PlayerAnimator.new(player_sprite)
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var knockback_velocity:Vector3 = Vector3.ZERO
 
 var is_dying = false
 var walk_tween: Tween
@@ -31,12 +35,14 @@ var is_walk:bool = false
 var is_jump:bool = false
 var is_attack:bool = false
 
+var can_attack:bool = true
+
 func _ready():
 	# Store the initial sprite scale, and force the rotation so it matches the isometric camera.
 	base_sprite_scale = Vector3.ONE  # Set a known initial scale
 	player_sprite.scale = base_sprite_scale  # Apply it to the sprite
 	player_sprite.rotation_degrees = base_sprite_rotation_degrees
-	print("Initial scale set to: ", base_sprite_scale)  # Debug print
+	#print("Initial scale set to: ", base_sprite_scale)
 
 func _physics_process(delta):
 	# Gravity
@@ -70,9 +76,12 @@ func _physics_process(delta):
 		0,
 		- input_dir.x + input_dir.y # Z axis
 	).normalized()
-
+	
+	# if knockback
+	if knockback_velocity != Vector3.ZERO: velocity = knockback_velocity
+	
 	# Accelerate / decelerate in XZ plane
-	if direction.length() > 0.01:
+	if direction.length() > 0.01 and knockback_velocity == Vector3.ZERO:
 		var target_velocity = direction * SPEED
 		velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION * delta)
 		velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION * delta)
@@ -86,7 +95,7 @@ func _physics_process(delta):
 		
 		if !is_attack and !is_jump:
 			animator.animation = "walk"
-	else:
+	elif knockback_velocity == Vector3.ZERO:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 		velocity.z = move_toward(velocity.z, 0, FRICTION * delta)
 		
@@ -103,13 +112,14 @@ func _physics_process(delta):
 
 	# Update animated sprite if velocity is high enough
 	var velocity_2d = Vector2(velocity.x, velocity.z)
-	if velocity_2d.length() > 0.1 and !is_attack:
+	if velocity_2d.length() > 0.1 and !is_attack and knockback_velocity == Vector3.ZERO:
 		animator.update_animation(velocity_2d, delta) # or whatever your animator expects
 	elif !is_attack:
 		animator.set_idle()
 
 func _input(event):
-	if Input.is_action_just_pressed("attack") and !is_attack:
+	# Attack
+	if Input.is_action_just_pressed("attack") and !is_attack and can_attack:
 		is_attack = true
 		player_sprite.play("attack")
 		attack_timer.start(attack_timer.wait_time)
@@ -132,8 +142,6 @@ func apply_walk_squish():
 
 		var squish_duration = 0.25  # Slightly slower
 		var squish_amount = 0.05    # More pronounced squish
-		
-		print("Setting up new walk tween with duration:", squish_duration, " and amount:", squish_amount)
 		
 		# PHASE 1: Squish vertically, stretch horizontally
 		walk_tween.parallel().tween_property(
@@ -168,7 +176,6 @@ func reset_walk_squish():
 	reset_tween.set_trans(Tween.TRANS_SINE)
 	reset_tween.set_ease(Tween.EASE_OUT)
 	reset_tween.tween_property(player_sprite, "scale", base_sprite_scale, 0.2)
-
 
 # -- Death & Respawn --
 
@@ -208,6 +215,7 @@ func reset_death_state():
 func respawn():
 	global_position = Vector3(1, 2, 0)
 	velocity = Vector3.ZERO
+	HEALTH = 100.0
 
 
 # -- Shadow Handling --
@@ -245,6 +253,21 @@ func update_shadow():
 			debug_label.modulate = Color.RED
 		shadow_sprite.visible = false
 
-
+# -- Attack --
 func _on_attack_timeout():
-	is_attack = false
+	if is_attack:
+		is_attack = false
+		attack_timer.start(ATTACK_COUNTDOWN)
+	elif !can_attack:
+		can_attack = true
+
+# -- Damage --
+func take_damage(damage: int, knockback_force: Vector3):
+	HEALTH -= damage
+	if HEALTH <= 0:
+		HEALTH = 0
+		trigger_death()
+	knockback_velocity = knockback_force
+	var knock_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	knock_tween.tween_property(self, "knockback_velocity", Vector3.ZERO, 0.15)
+	#knock_tween.tween_property(self, "knockback_velocity", Vector3.ZERO, 0.2)

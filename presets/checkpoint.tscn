@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc1fjs5dpc3q6"]
+
+[ext_resource type="Script" path="res://scripts/prefabs/checkpoint.gd" id="1_ebua5"]
+[ext_resource type="Texture2D" uid="uid://d2ff2wdnhy0ux" path="res://assets/prototype_grid.png" id="2_kvpjx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn22t"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.305882)
+albedo_texture = ExtResource("2_kvpjx")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jsno0"]
+material = SubResource("StandardMaterial3D_dn22t")
+size = Vector3(5, 6, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4fck"]
+size = Vector3(5, 6, 0.1)
+
+[node name="checkpoint" type="Node3D"]
+script = ExtResource("1_ebua5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jsno0")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_r4fck")

@@ -16,11 +16,14 @@ func fall():
 	#shake_tween.tween_property(platform, "position:y", initial_pos.y, .05)
 	#shake_tween.set_loops(2)
 	#
+	var fall_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	fall_tween.tween_property(platform, "position:y", initial_pos.y - .05, .2).set_delay(0.25)
+	
 	## Wait before falling
 	await get_tree().create_timer(0.5).timeout
 	
 	# Create fall tween
-	var fall_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	fall_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	fall_tween.tween_property(platform, "global_position", fall_pos, 2.0)
 	fall_tween.parallel().tween_property(platform.front_mesh.material_override, "albedo_color:a", 0, 1.0)
 	fall_tween.parallel().tween_property(platform.right_mesh.material_override, "albedo_color:a", 0, 1.0)
