@@ -1,11 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://b1a8o455klce5"]
+[gd_scene load_steps=36 format=3 uid="uid://b1a8o455klce5"]
 
 [ext_resource type="Script" uid="uid://c0idqsgfdadh3" path="res://scripts/level.gd" id="1_m5rnq"]
 [ext_resource type="Script" uid="uid://b88htgw7axd4v" path="res://scripts/iso_camera.gd" id="2_xs5l6"]
 [ext_resource type="PackedScene" uid="uid://cmy4ekxyuktwn" path="res://scenes/player.tscn" id="3_c2ds0"]
 [ext_resource type="PackedScene" uid="uid://b38gbd6tjfrm8" path="res://presets/cube.tscn" id="4_rpap1"]
 [ext_resource type="PackedScene" uid="uid://dptkvs44nquwr" path="res://presets/piston.tscn" id="5_ib0a1"]
-[ext_resource type="Texture2D" uid="uid://bup4s62rxpfpb" path="res://assets/rock_topface.png" id="6_4kaqa"]
+[ext_resource type="Texture2D" uid="uid://eifxkk6565dn" path="res://assets/rock_topface.png" id="6_4kaqa"]
 [ext_resource type="PackedScene" uid="uid://dw8yiit8e40t6" path="res://presets/insta_kill_liquid.tscn" id="6_qql5o"]
 [ext_resource type="Script" uid="uid://cnr74p7lehkod" path="res://resources/TextureTile.gd" id="7_it4vp"]
 [ext_resource type="PackedScene" uid="uid://dyq5tatihyle4" path="res://presets/falling_platforms.tscn" id="9_6mhie"]
@@ -53,24 +53,6 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_7ctuc"]
 image = SubResource("Image_it4vp")
 
-[sub_resource type="Resource" id="Resource_qql5o"]
-resource_local_to_scene = true
-script = ExtResource("7_it4vp")
-top_texture = ExtResource("6_4kaqa")
-front_texture = SubResource("ImageTexture_acqn5")
-right_texture = SubResource("ImageTexture_7ctuc")
-modulate = Color(1, 1, 1, 1)
-metadata/_custom_type_script = "uid://cnr74p7lehkod"
-
-[sub_resource type="Resource" id="Resource_it4vp"]
-resource_local_to_scene = true
-script = ExtResource("7_it4vp")
-top_texture = ExtResource("6_4kaqa")
-front_texture = SubResource("ImageTexture_acqn5")
-right_texture = SubResource("ImageTexture_7ctuc")
-modulate = Color(1, 1, 1, 1)
-metadata/_custom_type_script = "uid://cnr74p7lehkod"
-
 [sub_resource type="Resource" id="Resource_0ory1"]
 resource_local_to_scene = true
 script = ExtResource("7_it4vp")
@@ -89,7 +71,49 @@ right_texture = SubResource("ImageTexture_7ctuc")
 modulate = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://cnr74p7lehkod"
 
-[sub_resource type="Resource" id="Resource_hnalp"]
+[sub_resource type="Image" id="Image_hnalp"]
+data = {
+"data": PackedByteArray(21, 21, 21, 255),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 1
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_kam1y"]
+image = SubResource("Image_hnalp")
+
+[sub_resource type="Image" id="Image_kam1y"]
+data = {
+"data": PackedByteArray(21, 21, 21, 255),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 1
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_qtqij"]
+image = SubResource("Image_kam1y")
+
+[sub_resource type="Resource" id="Resource_ony54"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_kam1y")
+right_texture = SubResource("ImageTexture_qtqij")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
+
+[sub_resource type="Resource" id="Resource_qtqij"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_acqn5")
+right_texture = SubResource("ImageTexture_7ctuc")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
+
+[sub_resource type="Resource" id="Resource_62uat"]
 resource_local_to_scene = true
 script = ExtResource("7_it4vp")
 top_texture = ExtResource("6_4kaqa")
@@ -177,39 +201,42 @@ max_distance = 0.85
 
 [node name="InstaKillLiquid" parent="Ground" instance=ExtResource("6_qql5o")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -2.499)
+visible = false
 tile_offset = Vector2(0.615, 0.615)
 
 [node name="InstaKillLiquid2" parent="Ground" instance=ExtResource("6_qql5o")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -5.499)
+visible = false
 tile_offset = Vector2(0.615, 0.615)
 
 [node name="Ground1" parent="Ground" instance=ExtResource("4_rpap1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -0.5)
-tile = SubResource("Resource_qql5o")
+tile = SubResource("Resource_0ory1")
 tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 7)
 
 [node name="Ground5" parent="Ground" instance=ExtResource("4_rpap1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.80494, 0, -0.483)
-tile = SubResource("Resource_it4vp")
+tile = SubResource("Resource_766f2")
 tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(4, 1, 7)
 
 [node name="Ground2" parent="Ground" instance=ExtResource("4_rpap1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.252, 0, -4)
-tile = SubResource("Resource_0ory1")
+tile = SubResource("Resource_ony54")
 tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 5)
 
 [node name="Ground3" parent="Ground" instance=ExtResource("4_rpap1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -7)
-tile = SubResource("Resource_766f2")
+visible = false
+tile = SubResource("Resource_qtqij")
 tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 5)
 
 [node name="Ground4" parent="Ground" instance=ExtResource("4_rpap1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.251878, 0, -15.6575)
-tile = SubResource("Resource_hnalp")
+tile = SubResource("Resource_62uat")
 tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 5)
 
