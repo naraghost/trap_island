@@ -49,7 +49,7 @@ func _process(delta):
 			scale.y = initial_scale.y * squash
 			scale.x = initial_scale.x * (1.0 + (1.0 - squash) * 0.5)
 			scale.z = initial_scale.z * (1.0 + (1.0 - squash) * 0.5)
-
+			
 			if timer >= impact_pause_time:
 				current_state = State.RISING
 

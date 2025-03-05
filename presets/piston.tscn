@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://dptkvs44nquwr"]
 
-[ext_resource type="Script" path="res://scripts/crushing_platform.gd" id="1_avcpb"]
+[ext_resource type="Script" uid="uid://wnxvyb6xd5c" path="res://scripts/crushing_platform.gd" id="1_avcpb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avcpb"]
-albedo_color = Color(0.858824, 0.141176, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtxym"]
+albedo_color = Color(0.44895, 1.30555e-06, 9.62615e-08, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_avcpb"]
-material = SubResource("StandardMaterial3D_avcpb")
+[sub_resource type="BoxMesh" id="BoxMesh_qtu21"]
+material = SubResource("StandardMaterial3D_rtxym")
 size = Vector3(0.95, 0.25, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y8bh0"]
@@ -23,9 +23,10 @@ material = SubResource("StandardMaterial3D_5oo1t")
 top_radius = 0.15
 bottom_radius = 0.15
 height = 0.5
+radial_segments = 40
 
 [node name="CrushingPlatform" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_avcpb")
+mesh = SubResource("BoxMesh_qtu21")
 script = ExtResource("1_avcpb")
 max_distance = 1.0
 

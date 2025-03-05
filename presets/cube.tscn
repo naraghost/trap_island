@@ -1,26 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b38gbd6tjfrm8"]
+[gd_scene load_steps=2 format=3 uid="uid://b38gbd6tjfrm8"]
 
-[ext_resource type="Script" path="res://scripts/cube.gd" id="1_ftslj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rasi2"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbmx2"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnq1b"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
+[ext_resource type="Script" uid="uid://cd30gwm0j2kfp" path="res://scripts/cube.gd" id="1_ftslj"]
 
 [node name="Ground" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_ftslj")
-cube_size = Vector3(1, 1, 1)
-custom_top_material = SubResource("StandardMaterial3D_rasi2")
-custom_front_material = SubResource("StandardMaterial3D_qbmx2")
-custom_right_material = SubResource("StandardMaterial3D_xnq1b")
+cube_size = Vector3(1, 1, 2)

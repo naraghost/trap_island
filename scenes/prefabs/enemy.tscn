@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c53m4tj4ai05x"]
 
-[ext_resource type="Script" path="res://scripts/prefabs/enemy.gd" id="1_4yud0"]
+[ext_resource type="Script" uid="uid://ln5fgpyar7t4" path="res://scripts/prefabs/enemy.gd" id="1_4yud0"]
 [ext_resource type="Texture2D" uid="uid://cyvnjwaij7yy1" path="res://assets/Terminal Funni Man/attack.png" id="2_v3hmt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fjddw"]

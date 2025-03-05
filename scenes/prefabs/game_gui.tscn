@@ -1,16 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfm8pgolji2dh"]
+[gd_scene load_steps=9 format=3 uid="uid://dfm8pgolji2dh"]
 
-[ext_resource type="Script" path="res://scripts/ui/gui.gd" id="1_m1dok"]
+[ext_resource type="Script" uid="uid://j047yattmdko" path="res://scripts/ui/gui.gd" id="1_m1dok"]
+[ext_resource type="Texture2D" uid="uid://dr5l3c0q6pjug" path="res://assets/Terminal Funni Man/terminal_icons.png" id="2_krfqk"]
+[ext_resource type="FontFile" uid="uid://cmctloyeoedun" path="res://assets/fonts/impact.ttf" id="3_iacbc"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_paad3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6webp"]
+atlas = ExtResource("2_krfqk")
+region = Rect2(18, 0, 231, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eddg7"]
 bg_color = Color(0.12103, 0.12103, 0.12103, 0.764706)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtyig"]
+bg_color = Color(0.840167, 0.550679, 1.92523e-07, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0pkx"]
+bg_color = Color(0, 0, 0, 0)
+draw_center = false
+corner_detail = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifbmu"]
-bg_color = Color(0.209106, 0.561441, 0, 1)
+bg_color = Color(1, 0, 0, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -25,26 +51,114 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m1dok")
 
-[node name="Health" type="ProgressBar" parent="."]
+[node name="PlayerIcon" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -56.0
-offset_right = 394.0
-offset_bottom = -16.0
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_paad3")
+offset_left = 12.0
+offset_right = 219.9
+offset_bottom = 195.3
+texture = SubResource("AtlasTexture_6webp")
+expand_mode = 1
+
+[node name="DamagedHealth" type="ProgressBar" parent="PlayerIcon"]
+show_behind_parent = true
+layout_mode = 1
+offset_left = 183.0
+offset_top = 100.0
+offset_right = 561.0
+offset_bottom = 140.0
+theme_override_styles/background = SubResource("StyleBoxFlat_eddg7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mtyig")
+value = 50.0
+show_percentage = false
+
+[node name="Health" type="ProgressBar" parent="PlayerIcon"]
+show_behind_parent = true
+layout_mode = 1
+offset_left = 183.0
+offset_top = 100.0
+offset_right = 561.0
+offset_bottom = 140.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d0pkx")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ifbmu")
 value = 25.0
 show_percentage = false
 
-[node name="player" type="Label" parent="Health"]
-layout_mode = 0
-offset_top = -40.0
-offset_right = 378.0
-offset_bottom = -6.0
+[node name="Score" type="Label" parent="PlayerIcon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.11592
+offset_left = 424.0
+offset_top = 148.0
+offset_right = 555.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(1, 0.658824, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_iacbc")
 theme_override_font_sizes/font_size = 24
-text = "TERMINAL - FUNNI MAN"
-horizontal_alignment = 1
+text = "SCORE: 12398"
+horizontal_alignment = 2
+
+[node name="Money" type="Label" parent="PlayerIcon"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 148.0
+offset_right = 323.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0.0705882, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_iacbc")
+theme_override_font_sizes/font_size = 24
+text = "$100"
+
+[node name="PlayerName" type="Label" parent="PlayerIcon"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 58.0
+offset_right = 424.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_iacbc")
+theme_override_font_sizes/font_size = 28
+text = "TERMINAL FUNNI MAN"
+
+[node name="Life" type="Label" parent="PlayerIcon"]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 58.0
+offset_right = 806.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(1, 0.878431, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_iacbc")
+theme_override_font_sizes/font_size = 80
+text = "x3"
+
+[node name="Timer" type="Timer" parent="PlayerIcon"]
+process_callback = 0
+wait_time = 0.6
+one_shot = true
+
+[node name="fps_counter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1758.0
+offset_top = 58.0
+offset_right = 1861.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("3_iacbc")
+theme_override_font_sizes/font_size = 36
+text = "FPS: 60"
+
+[connection signal="timeout" from="PlayerIcon/Timer" to="." method="update_health"]

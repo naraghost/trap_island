@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TextureTile" load_steps=3 format=3 uid="uid://chukte8h8wf5"]
+
+[ext_resource type="Script" uid="uid://cnr74p7lehkod" path="res://resources/TextureTile.gd" id="1_r63yi"]
+[ext_resource type="Texture2D" uid="uid://c1gxj6f6ny78p" path="res://assets/lava.png" id="2_c80mh"]
+
+[resource]
+script = ExtResource("1_r63yi")
+top_texture = ExtResource("2_c80mh")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"

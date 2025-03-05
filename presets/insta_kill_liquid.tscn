@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw8yiit8e40t6"]
+
+[ext_resource type="Script" uid="uid://cree1gxnxiqos" path="res://scripts/lava_ground.gd" id="1_3icrs"]
+[ext_resource type="Resource" uid="uid://chukte8h8wf5" path="res://presets/tiles/lava_ground.tres" id="3_4wqgm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7r4gi"]
+margin = 0.0
+size = Vector3(2, 0.1, 1)
+
+[node name="InstaKillLiquid" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_3icrs")
+tile = ExtResource("3_4wqgm")
+tile_offset = Vector2(0.625, 0.625)
+cube_size = Vector3(2, 0.7, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_7r4gi")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

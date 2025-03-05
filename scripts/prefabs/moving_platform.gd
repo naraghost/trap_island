@@ -10,7 +10,7 @@ extends Node3D
 @export var move_in_editor:bool = true:
 	set(value):
 		move_in_editor = value
-		if !value and Engine.is_editor_hint():
+		if !value and Engine.is_editor_hint() and platform:
 			target = 1
 			progress = 0.0
 			platform.position = point_in
@@ -18,12 +18,10 @@ extends Node3D
 			time = 0.0
 			is_waiting = false
 
-
 @export var point_in:Vector3 = Vector3.ZERO:
 	set(p_in):
 		point_in = p_in
 		_upd()
-		
 @export var point_out:Vector3 = Vector3.ZERO:
 	set(p_out):
 		point_out = p_out
@@ -84,7 +82,6 @@ func move_platform(delta:float):
 			target = -1
 		platform.position = lerp(point_in,point_out,progress)
 		player_detector.position = platform.position
-
 
 func _on_player_detector_area_entered(body):
 	platform_bounce = true

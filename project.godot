@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Trap_Island"
-run/main_scene="uid://j72ee3efp2kd"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+run/main_scene="res://levels/testlevel.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="TheGhostCrew/TrapIsland"
+config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 config/icon="res://assets/icon.svg"
 
@@ -21,6 +23,7 @@ config/icon="res://assets/icon.svg"
 ScreenShake="*res://globals/screen_shake.gd"
 OptionsManager="*res://globals/options_manager.gd"
 Global="*res://globals/Global.gd"
+Optimization="*res://globals/Optimization.gd"
 
 [display]
 

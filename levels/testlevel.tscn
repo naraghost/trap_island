@@ -1,19 +1,19 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1a8o455klce5"]
+[gd_scene load_steps=32 format=3 uid="uid://b1a8o455klce5"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_m5rnq"]
-[ext_resource type="Script" path="res://scripts/iso_camera.gd" id="2_xs5l6"]
+[ext_resource type="Script" uid="uid://c0idqsgfdadh3" path="res://scripts/level.gd" id="1_m5rnq"]
+[ext_resource type="Script" uid="uid://b88htgw7axd4v" path="res://scripts/iso_camera.gd" id="2_xs5l6"]
 [ext_resource type="PackedScene" uid="uid://cmy4ekxyuktwn" path="res://scenes/player.tscn" id="3_c2ds0"]
 [ext_resource type="PackedScene" uid="uid://b38gbd6tjfrm8" path="res://presets/cube.tscn" id="4_rpap1"]
-[ext_resource type="Material" uid="uid://lk4teqfdu0cn" path="res://materials/prototype_grid.tres" id="5_e0me5"]
 [ext_resource type="PackedScene" uid="uid://dptkvs44nquwr" path="res://presets/piston.tscn" id="5_ib0a1"]
 [ext_resource type="Texture2D" uid="uid://bup4s62rxpfpb" path="res://assets/rock_topface.png" id="6_4kaqa"]
-[ext_resource type="Script" path="res://scripts/lava_ground.gd" id="7_ld5br"]
+[ext_resource type="PackedScene" uid="uid://dw8yiit8e40t6" path="res://presets/insta_kill_liquid.tscn" id="6_qql5o"]
+[ext_resource type="Script" uid="uid://cnr74p7lehkod" path="res://resources/TextureTile.gd" id="7_it4vp"]
 [ext_resource type="PackedScene" uid="uid://dyq5tatihyle4" path="res://presets/falling_platforms.tscn" id="9_6mhie"]
-[ext_resource type="Material" uid="uid://gjyd032lw5lv" path="res://materials/rock.tres" id="9_kjno1"]
 [ext_resource type="PackedScene" uid="uid://bf4cpv73sspmn" path="res://presets/moving_platform.tscn" id="10_1e3xl"]
 [ext_resource type="PackedScene" uid="uid://d0rat0c8n0ry6" path="res://scenes/pause_menu.tscn" id="11_7hqgv"]
 [ext_resource type="PackedScene" uid="uid://dfm8pgolji2dh" path="res://scenes/prefabs/game_gui.tscn" id="13_y66w0"]
 [ext_resource type="PackedScene" uid="uid://c53m4tj4ai05x" path="res://scenes/prefabs/enemy.tscn" id="14_ll554"]
+[ext_resource type="ArrayOccluder3D" uid="uid://c44rnfymyg2y6" path="res://scenes/occluders/testlevel.occ" id="15_it4vp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_036b0"]
 sky_top_color = Color(0.197577, 0.356717, 1, 1)
@@ -29,51 +29,74 @@ sky = SubResource("Sky_dwbse")
 sdfgi_use_occlusion = true
 glow_intensity = 1.19
 
-[sub_resource type="Image" id="Image_0fj8s"]
+[sub_resource type="Image" id="Image_qql5o"]
 data = {
-"data": PackedByteArray(21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 92, 92, 92, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255, 21, 21, 21, 255),
+"data": PackedByteArray(21, 21, 21, 255),
 "format": "RGBA8",
-"height": 16,
+"height": 1,
 "mipmaps": false,
-"width": 16
+"width": 1
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_15otk"]
-image = SubResource("Image_0fj8s")
+[sub_resource type="ImageTexture" id="ImageTexture_acqn5"]
+image = SubResource("Image_qql5o")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_014yv"]
-transparency = 1
-depth_draw_mode = 1
-albedo_texture = SubResource("ImageTexture_15otk")
-rim_tint = 0.55
-texture_filter = 0
-grow_amount = 0.5
+[sub_resource type="Image" id="Image_it4vp"]
+data = {
+"data": PackedByteArray(21, 21, 21, 255),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 1
+}
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45u08"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
-albedo_color = Color(1, 0, 0, 1)
-albedo_texture = ExtResource("6_4kaqa")
-uv1_offset = Vector3(1, -0.5, -0.5)
-uv1_triplanar = true
+[sub_resource type="ImageTexture" id="ImageTexture_7ctuc"]
+image = SubResource("Image_it4vp")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oosyt"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
+[sub_resource type="Resource" id="Resource_qql5o"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_acqn5")
+right_texture = SubResource("ImageTexture_7ctuc")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7r4gi"]
-margin = 0.0
-size = Vector3(2, 0.1, 1)
+[sub_resource type="Resource" id="Resource_it4vp"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_acqn5")
+right_texture = SubResource("ImageTexture_7ctuc")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
 
-[sub_resource type="BoxMesh" id="BoxMesh_2xm7b"]
-size = Vector3(2, 0.1, 1)
+[sub_resource type="Resource" id="Resource_0ory1"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_acqn5")
+right_texture = SubResource("ImageTexture_7ctuc")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b5tp"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
+[sub_resource type="Resource" id="Resource_766f2"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_acqn5")
+right_texture = SubResource("ImageTexture_7ctuc")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
+
+[sub_resource type="Resource" id="Resource_hnalp"]
+resource_local_to_scene = true
+script = ExtResource("7_it4vp")
+top_texture = ExtResource("6_4kaqa")
+front_texture = SubResource("ImageTexture_acqn5")
+right_texture = SubResource("ImageTexture_7ctuc")
+modulate = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://cnr74p7lehkod"
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_71j4m"]
 
@@ -98,9 +121,10 @@ transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -
 visible = false
 projection = 1
 current = true
-size = 2.5
+size = 2.0
 script = ExtResource("2_xs5l6")
 target_path = NodePath("../Player")
+min_zoom = 2.0
 initial_zoom = 2.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -122,9 +146,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -9.25)
 visible = false
 cube_size = Vector3(0.5, 2, 21)
-custom_top_material = ExtResource("5_e0me5")
-custom_front_material = SubResource("StandardMaterial3D_014yv")
-custom_right_material = ExtResource("5_e0me5")
 
 [node name="CrushingPlatforms" type="Node3D" parent="Ground"]
 
@@ -154,85 +175,50 @@ fall_speed = 3.5
 rise_speed = 0.5
 max_distance = 0.85
 
-[node name="LavaGround" parent="Ground" instance=ExtResource("4_rpap1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.252, 0, -2.47902)
-cube_size = Vector3(2, 0.7, 1)
-custom_top_material = SubResource("StandardMaterial3D_45u08")
-custom_front_material = SubResource("StandardMaterial3D_oosyt")
-custom_right_material = ExtResource("5_e0me5")
+[node name="InstaKillLiquid" parent="Ground" instance=ExtResource("6_qql5o")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -2.499)
+tile_offset = Vector2(0.615, 0.615)
 
-[node name="Area3D" type="Area3D" parent="Ground/LavaGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.704873, 0.00244427)
-collision_layer = 4
-script = ExtResource("7_ld5br")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround/Area3D"]
-shape = SubResource("BoxShape3D_7r4gi")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/LavaGround/Area3D"]
-visible = false
-mesh = SubResource("BoxMesh_2xm7b")
-
-[node name="LavaGround2" parent="Ground" instance=ExtResource("4_rpap1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.252, 0, -5.46719)
-cube_size = Vector3(2, 0.7, 1)
-custom_top_material = SubResource("StandardMaterial3D_45u08")
-custom_front_material = SubResource("StandardMaterial3D_5b5tp")
-custom_right_material = ExtResource("5_e0me5")
-
-[node name="Area3D" type="Area3D" parent="Ground/LavaGround2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.704873, 0.00244427)
-collision_layer = 4
-script = ExtResource("7_ld5br")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LavaGround2/Area3D"]
-shape = SubResource("BoxShape3D_7r4gi")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/LavaGround2/Area3D"]
-visible = false
-mesh = SubResource("BoxMesh_2xm7b")
+[node name="InstaKillLiquid2" parent="Ground" instance=ExtResource("6_qql5o")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -5.499)
+tile_offset = Vector2(0.615, 0.615)
 
 [node name="Ground1" parent="Ground" instance=ExtResource("4_rpap1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -0.483)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -0.5)
+tile = SubResource("Resource_qql5o")
+tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 7)
-custom_top_material = ExtResource("9_kjno1")
-custom_front_material = ExtResource("5_e0me5")
-custom_right_material = ExtResource("5_e0me5")
 
 [node name="Ground5" parent="Ground" instance=ExtResource("4_rpap1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.70908, 0, -0.483)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.80494, 0, -0.483)
+tile = SubResource("Resource_it4vp")
+tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(4, 1, 7)
-custom_top_material = ExtResource("9_kjno1")
-custom_front_material = ExtResource("5_e0me5")
-custom_right_material = ExtResource("5_e0me5")
 
 [node name="Ground2" parent="Ground" instance=ExtResource("4_rpap1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.251878, 0, -3.97462)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.252, 0, -4)
+tile = SubResource("Resource_0ory1")
+tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 5)
-custom_top_material = ExtResource("9_kjno1")
-custom_front_material = ExtResource("5_e0me5")
-custom_right_material = ExtResource("5_e0me5")
 
 [node name="Ground3" parent="Ground" instance=ExtResource("4_rpap1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.251878, 0, -6.95549)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0, -7)
+tile = SubResource("Resource_766f2")
+tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 5)
-custom_top_material = ExtResource("9_kjno1")
-custom_front_material = ExtResource("5_e0me5")
-custom_right_material = ExtResource("5_e0me5")
 
 [node name="Ground4" parent="Ground" instance=ExtResource("4_rpap1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.251878, 0, -15.6575)
+tile = SubResource("Resource_hnalp")
+tile_offset = Vector2(0, 0.5)
 cube_size = Vector3(2, 1, 5)
-custom_top_material = ExtResource("9_kjno1")
-custom_front_material = ExtResource("5_e0me5")
-custom_right_material = ExtResource("5_e0me5")
 
 [node name="falling_platforms" parent="Ground" instance=ExtResource("9_6mhie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259336, 0, -11.993)
 platforms_number = 5
 
 [node name="MovingPlatform" parent="." instance=ExtResource("10_1e3xl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.007, 0.35, -8.51842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -8.518)
 move_in_editor = false
 point_out = Vector3(0, 0, -2.9)
 velocity = 1.0
@@ -252,10 +238,11 @@ shape = SubResource("BoxShape3D_i7141")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="GameGUI" parent="CanvasLayer" instance=ExtResource("13_y66w0")]
+
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("11_7hqgv")]
 visible = false
-
-[node name="GameGUI" parent="CanvasLayer" instance=ExtResource("13_y66w0")]
+z_index = 1
 
 [node name="WorldSpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07275, 1.14304, 0.269654)
@@ -264,4 +251,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07275, 1.14304, 0.269654)
 mesh = SubResource("BoxMesh_jf0ci")
 
 [node name="Enemy" parent="." instance=ExtResource("14_ll554")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76625, 1, -0.059)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.429, 0.501, -0.203)
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("15_it4vp")

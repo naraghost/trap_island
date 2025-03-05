@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bf4cpv73sspmn"]
 
 [ext_resource type="Texture2D" uid="uid://bup4s62rxpfpb" path="res://assets/rock_topface.png" id="1_hqx6n"]
-[ext_resource type="Script" path="res://scripts/prefabs/moving_platform.gd" id="1_pxgj3"]
+[ext_resource type="Script" uid="uid://o6g435cejhc3" path="res://scripts/prefabs/moving_platform.gd" id="1_pxgj3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r4gi"]
 albedo_texture = ExtResource("1_hqx6n")

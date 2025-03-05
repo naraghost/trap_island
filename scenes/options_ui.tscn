@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://tofehkuq0nv2" path="res://scripts/ui/options_ui.gd" id="1_k3vpy"]
 
-[node name="OptionsUI" type="VBoxContainer" node_paths=PackedStringArray("shake_slider")]
+[node name="OptionsUI" type="VBoxContainer" node_paths=PackedStringArray("shake_slider", "quality_slider")]
 theme_override_constants/separation = 16
 script = ExtResource("1_k3vpy")
 shake_slider = NodePath("ShakeContainer/ShakeSlider")
+quality_slider = NodePath("QualityContainer/QualitySlider")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -28,6 +29,26 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 
+[node name="QualityContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="QualityContainer"]
+layout_mode = 2
+text = "Texture Quality"
+horizontal_alignment = 1
+
+[node name="QualitySlider" type="HSlider" parent="QualityContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="info" type="Label" parent="QualityContainer"]
+layout_mode = 2
+text = "1.0x"
+horizontal_alignment = 1
+
 [node name="BackButton" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -35,4 +56,5 @@ theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [connection signal="value_changed" from="ShakeContainer/ShakeSlider" to="." method="_on_shake_value_changed"]
+[connection signal="value_changed" from="QualityContainer/QualitySlider" to="." method="_on_quality_slider_value_changed"]
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=73 format=3 uid="uid://cmy4ekxyuktwn"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://c2c1kkc80va4q" path="res://scripts/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cyvnjwaij7yy1" path="res://assets/Terminal Funni Man/attack.png" id="2_8ge1x"]
 [ext_resource type="Texture2D" uid="uid://b33eufg6bikcq" path="res://assets/Terminal Funni Man/idle.png" id="2_ofpgt"]
 [ext_resource type="Texture2D" uid="uid://cqllypld7laky" path="res://assets/Terminal Funni Man/jump.png" id="3_eiv2o"]

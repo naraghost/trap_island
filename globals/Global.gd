@@ -1,7 +1,6 @@
 extends Node
 
 
-
 func _ready():
 	get_viewport().get_window().size = Vector2i(640,360)
 	var screen_size:Vector2i = DisplayServer.screen_get_size(0)

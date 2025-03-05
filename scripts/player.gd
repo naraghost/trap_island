@@ -2,12 +2,13 @@ extends CharacterBody3D
 
 class_name PlayerCharacter
 
+signal player_damaged
+
 @export var SPEED = 1.3
 @export var JUMP_VELOCITY = 3
 @export var ACCELERATION = 200.0
 @export var FRICTION = 100.0
 @export var ATTACK_COUNTDOWN = 0.5
-var HEALTH:float = 100.0
 
 @onready var shadow_sprite: Sprite3D = $ShadowGradient
 @onready var ground_ray: RayCast3D = $ShadowRaycast
@@ -19,6 +20,8 @@ var HEALTH:float = 100.0
 @onready var animator: PlayerAnimator = PlayerAnimator.new(player_sprite)
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var health:float = 100.0
 
 var knockback_velocity:Vector3 = Vector3.ZERO
 
@@ -215,7 +218,7 @@ func reset_death_state():
 func respawn():
 	global_position = Vector3(1, 2, 0)
 	velocity = Vector3.ZERO
-	HEALTH = 100.0
+	health = 100.0
 
 
 # -- Shadow Handling --
@@ -263,9 +266,10 @@ func _on_attack_timeout():
 
 # -- Damage --
 func take_damage(damage: int, knockback_force: Vector3):
-	HEALTH -= damage
-	if HEALTH <= 0:
-		HEALTH = 0
+	player_damaged.emit()
+	health -= damage
+	if health <= 0:
+		health = 0
 		trigger_death()
 	knockback_velocity = knockback_force
 	var knock_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

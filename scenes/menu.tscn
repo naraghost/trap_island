@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://j72ee3efp2kd"]
 
-[ext_resource type="Script" path="res://scripts/ui/menu.gd" id="1_kxmvd"]
+[ext_resource type="Script" uid="uid://b14yif58nvmyk" path="res://scripts/ui/menu.gd" id="1_kxmvd"]
 [ext_resource type="Texture2D" uid="uid://c1kmlgn2mxdr8" path="res://scenes/menus/resources/background_texture.tres" id="3_con2f"]
 [ext_resource type="Texture2D" uid="uid://1p8xm81od3nf" path="res://assets/Trap Menu/Trap Island logo 2025.png" id="4_i6lef"]
 [ext_resource type="Texture2D" uid="uid://ucbf7mp1xu2f" path="res://assets/Trap Menu/Campaing button0001.png" id="5_70i5f"]

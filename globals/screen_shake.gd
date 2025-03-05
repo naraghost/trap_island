@@ -19,7 +19,7 @@ func _ready() -> void:
 static func trigger_shake(source_position: Vector3, intensity: float = DEFAULT_SHAKE_INTENSITY, duration: float = DEFAULT_SHAKE_DURATION) -> void:
 	_shake_source_position = source_position
 	# Apply user's screen shake intensity preference
-	_shake_intensity = intensity * OptionsManager.get_screen_shake_intensity()
+	_shake_intensity = intensity * OptionsManager.get_option("screen_shake","intensity")
 	_shake_duration = duration
 	_shake_time = duration
 
@@ -56,7 +56,8 @@ func apply_screen_shake() -> void:
 		)
 		camera.global_position += shake_offset
 
-func _on_options_changed() -> void:
-	# Update current shake intensity when options change
-	if _shake_time > 0:
-		_shake_intensity = (_shake_intensity / OptionsManager.get_screen_shake_intensity()) * OptionsManager.get_screen_shake_intensity()
+func _on_options_changed(option) -> void:
+	if option == "texture-quality":
+		# Update current shake intensity when options change
+		if _shake_time > 0:
+			_shake_intensity = (_shake_intensity / OptionsManager.get_option("screen_shake","intensity")) * OptionsManager.get_option("screen_shake","intensity")
